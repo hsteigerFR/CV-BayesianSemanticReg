@@ -1,1 +1,1 @@
-# Computer Vision -Bayesian Semantic Registration
+# Computer Vision - Bayesian Semantic Registration
