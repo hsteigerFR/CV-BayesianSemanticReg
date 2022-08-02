@@ -32,20 +32,32 @@ An illustration of this strategy can be found below :
 
 Here is an example of the process, each frame corresponds to an EM iteration :
 
-![demo2](https://user-images.githubusercontent.com/106969232/182462037-96255559-f0d1-4adc-97af-783ae3767823.gif)
+<img src="https://user-images.githubusercontent.com/106969232/182462037-96255559-f0d1-4adc-97af-783ae3767823.gif" width="480" height="360" />
 
 One semantic class is used in this example : Car. Here is the evolution of the GMM for the Car class :
 
-![gaussian](https://user-images.githubusercontent.com/106969232/182461088-27c66432-5909-45f3-bca2-c7e5673c4381.gif)
+<img src="https://user-images.githubusercontent.com/106969232/182461088-27c66432-5909-45f3-bca2-c7e5673c4381.gif" width="480" height="360" />
 
 The transformation is not perfectly estimated with a single class. If a second class is used, i.e. the Person class, the result is better. The code in this repository proposes the situation with two classes : Car and Person. Here is the result of the process with two classes :
 
-![demo](https://user-images.githubusercontent.com/106969232/182461847-eb1b4cb4-4876-411a-9326-33bda6d8b6d9.gif)
+<img src="https://user-images.githubusercontent.com/106969232/182461847-eb1b4cb4-4876-411a-9326-33bda6d8b6d9.gif" width="480" height="360" />
 
 In the end, here are some examples of uncertainty calculus. The left column corresponds to the raw calculus and the right column to the refined uncertainty :
 
 ![var](https://user-images.githubusercontent.com/106969232/182464089-7dd3d5d4-1525-4621-9e02-e14711162ee6.JPG)
 
-As regards the limitations of the algorithm, it requires a lot of computation power and the calculus can be really slow. The use of a high level programming language such as Matlab may not be adapted as it slows down the process even more. The number of points that is used in the EM algorithm, if too high, makes the algorithm unstable and some points have to be filtered out. The algorithm is stable for segmentation probabilities above 0.8, but is really prone to fall into local extrema if the tranformation between the two pictures is too important. In order to deal with this issue, a first approximation of the transformation can be done with EdgeBoxes (Yolov5 algorithm for instance), to start the algorithm with this transformation rather than the identity. A study was also led with a "Window" class for building facades registration.
+As regards the limitations of the algorithm, it requires a lot of computation power and the calculus can be really slow. The use of a high level programming language such as Matlab may not be adapted as it slows down the process even more. The number of points that is used in the EM algorithm, if too high, makes the algorithm unstable and some points have to be filtered out. The algorithm is stable for segmentation probabilities above 0.8, but is really prone to fall into local extrema if the tranformation between the two pictures is too important. 
+
+In order to deal with this issue, a first approximation of the transformation can be done with EdgeBoxes (Yolov5 algorithm for instance), to start the algorithm with this transformation rather than the identity. A study was also led with a "Window" class for building facades registration. For more information, many thorough documents (in French) are accessible from the Drive link at the start of this text.
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+HOW TO USE :
+- Install the following toolboxes for Matlab : Curve Fitting Toolbox, Parallex Computing Toolbox, Optimization Toolbox, Symbolic Math Toolbox, Statistics & Machine Learning Toolbox, Image Processing Toolbox, Deep Learning Toolbox, Computer Vision Toolbox.
+- Replace FCN.mat.txt by FCN.mat, which can be found thanks to the Drive link in the text file : it is the semantic segmentation network.
+- To test the main algorithm, run the "main.m" script.
+- Results obtained with the repo script constants can be found in "results".
+- To test the segmentation and the uncertainty estimation calculus, run "eval_segmentation.m"
+
+
+Code tested with Matlab R2019b, Windows 10 (x64).
